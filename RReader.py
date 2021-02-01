@@ -6,17 +6,9 @@ import crypt
 
 
 
-
-
-
 with open("testpw.csv") as passwords:
-	for line in passwords:
-		salt_sha512 = crypt.crypt(line, crypt.mksalt(crypt.METHOD_SHA512))
-		writer = csv.writer(open("rainbow.csv" , "w"))
-		writer(salt_sha512.append())
-
-
-
-
-
-		
+	reader = DictReader(passwords)
+	for row in reader:
+		salt_sha512 = crypt.crypt(row, crypt.mksalt(crypt.METHOD_SHA512))
+		writer = csv.DictWriter(open("rainbow.csv")
+		writer.writerow(salt_sha512)
